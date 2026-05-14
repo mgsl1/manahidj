@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>المقاربة بالكفاءات والبيداغوجيات النشطة</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e17;
+    --cream: #fffcf2;
+    --gold: #e8a020;
+    --gold-light: #f5c842;
+    --teal: #0a6e6e;
+    --teal-light: #12a89a;
+    --rose: #c0392b;
+    --sky: #1a6fa8;
+    --purple: #6a3b8f;
+    --green: #1a7a4a;
+    --card-bg: #ffffff;
+    --shadow: 0 8px 40px rgba(15,14,23,0.13);
+    --radius: 20px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Tajawal', 'Cairo', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    min-height: 100vh;
+    background: var(--ink);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 60px 20px;
+  }
+
+  .hero-bg-circles {
+    position: absolute; inset: 0; pointer-events: none;
+  }
+  .hero-bg-circles span {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.08;
+    animation: float 8s ease-in-out infinite;
+  }
+  .hero-bg-circles span:nth-child(1) { width: 500px; height: 500px; background: var(--gold); top: -100px; right: -100px; animation-delay: 0s; }
+  .hero-bg-circles span:nth-child(2) { width: 300px; height: 300px; background: var(--teal-light); bottom: 50px; left: -80px; animation-delay: 2s; }
+  .hero-bg-circles span:nth-child(3) { width: 200px; height: 200px; background: var(--rose); top: 50%; left: 40%; animation-delay: 4s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.05); }
+  }
+
+  .hero-badge {
+    background: var(--gold);
+    color: var(--ink);
+    font-weight: 800;
+    font-size: 0.85rem;
+    padding: 6px 20px;
+    border-radius: 50px;
+    letter-spacing: 1px;
+    margin-bottom: 28px;
+    animation: fadeDown 0.7s ease forwards;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    font-weight: 900;
+    color: var(--cream);
+    text-align: center;
+    line-height: 1.25;
+    max-width: 900px;
+    animation: fadeDown 0.9s ease forwards;
+  }
+  .hero h1 span { color: var(--gold); }
+
+  .hero-sub {
+    margin-top: 24px;
+    color: rgba(255,252,242,0.6);
+    font-size: 1.15rem;
+    text-align: center;
+    max-width: 650px;
+    animation: fadeDown 1.1s ease forwards;
+  }
+
+  .hero-scroll {
+    margin-top: 60px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeDown 1.3s ease forwards;
+  }
+  .hero-pill {
+    background: rgba(255,252,242,0.08);
+    border: 1px solid rgba(255,252,242,0.15);
+    color: var(--cream);
+    padding: 10px 22px;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s;
+    cursor: default;
+  }
+  .hero-pill:hover { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== SECTION WRAPPER ===== */
+  .section {
+    padding: 90px 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--ink);
+    color: var(--gold);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    padding: 7px 18px;
+    border-radius: 50px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+  .section-title span { color: var(--teal); }
+
+  .section-desc {
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 700px;
+    line-height: 1.8;
+    margin-bottom: 50px;
+  }
+
+  /* ===== WHAT IS COMPETENCY ===== */
+  .competency-banner {
+    background: var(--teal);
+    border-radius: 28px;
+    padding: 50px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    margin-bottom: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .competency-banner::before {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 50%;
+    top: -100px; left: -100px;
+  }
+  .competency-banner h2 {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.3;
+  }
+  .competency-banner h2 em { color: var(--gold-light); font-style: normal; }
+  .competency-banner p { color: rgba(255,255,255,0.8); font-size: 1.05rem; line-height: 1.85; margin-top: 16px; }
+  .formula-box {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+  }
+  .formula-box .formula-title { color: var(--gold-light); font-size: 0.85rem; font-weight: 700; letter-spacing: 2px; margin-bottom: 20px; }
+  .formula-items { display: flex; flex-direction: column; gap: 12px; }
+  .formula-item {
+    background: rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 12px 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: transform 0.25s;
+  }
+  .formula-item:hover { transform: translateX(-6px); }
+  .formula-icon { font-size: 1.4rem; }
+  .formula-eq {
+    color: var(--gold-light);
+    font-size: 1.5rem;
+    font-weight: 900;
+    margin: 4px 0;
+  }
+
+  @media (max-width: 768px) {
+    .competency-banner { grid-template-columns: 1fr; padding: 32px 24px; }
+  }
+
+  /* ===== PRINCIPLES GRID ===== */
+  .principles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 70px;
+  }
+  .principle-card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: var(--shadow);
+    border-top: 5px solid transparent;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .principle-card::after {
+    content: '';
+    position: absolute;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    bottom: -30px; left: -30px;
+    opacity: 0.07;
+    transition: transform 0.4s;
+  }
+  .principle-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(15,14,23,0.18); }
+  .principle-card:hover::after { transform: scale(1.4); }
+
+  .pc-1 { border-color: var(--teal); } .pc-1::after { background: var(--teal); }
+  .pc-2 { border-color: var(--gold); } .pc-2::after { background: var(--gold); }
+  .pc-3 { border-color: var(--purple); } .pc-3::after { background: var(--purple); }
+  .pc-4 { border-color: var(--rose); } .pc-4::after { background: var(--rose); }
+  .pc-5 { border-color: var(--sky); } .pc-5::after { background: var(--sky); }
+  .pc-6 { border-color: var(--green); } .pc-6::after { background: var(--green); }
+
+  .p-icon { font-size: 2.2rem; margin-bottom: 16px; }
+  .p-title { font-size: 1.15rem; font-weight: 800; margin-bottom: 10px; }
+  .p-text { font-size: 0.95rem; color: #555; line-height: 1.75; }
+
+  /* ===== COMPARE TABLE ===== */
+  .compare-section { background: var(--ink); padding: 80px 24px; margin: 0 -0px; }
+  .compare-inner { max-width: 1100px; margin: 0 auto; }
+  .compare-section .section-title { color: var(--cream); }
+  .compare-section .section-title span { color: var(--gold); }
+  .compare-section .section-desc { color: rgba(255,252,242,0.6); }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    margin-top: 20px;
+  }
+  .compare-table thead th {
+    padding: 18px 24px;
+    font-size: 1rem;
+    font-weight: 800;
+    text-align: right;
+    border-radius: 12px;
+  }
+  .th-aspect { background: rgba(255,252,242,0.06); color: rgba(255,252,242,0.5); }
+  .th-old { background: rgba(192,57,43,0.2); color: #ff8a80; }
+  .th-new { background: rgba(10,110,110,0.3); color: var(--teal-light); }
+
+  .compare-table tbody tr { transition: transform 0.2s; }
+  .compare-table tbody tr:hover { transform: scale(1.01); }
+  .compare-table tbody td {
+    padding: 16px 24px;
+    font-size: 0.97rem;
+    line-height: 1.6;
+  }
+  .td-aspect { background: rgba(255,252,242,0.04); color: rgba(255,252,242,0.7); font-weight: 700; border-radius: 12px 0 0 12px; }
+  .td-old { background: rgba(192,57,43,0.1); color: #ffcdd2; border-right: 3px solid rgba(192,57,43,0.3); }
+  .td-new { background: rgba(10,110,110,0.15); color: #b2dfdb; border-radius: 0 12px 12px 0; border-right: 3px solid rgba(18,168,154,0.4); }
+
+  /* ===== PEDAGOGY CARDS ===== */
+  .pedagogy-section { padding: 90px 24px; background: #f7f5ef; }
+  .pedagogy-inner { max-width: 1200px; margin: 0 auto; }
+
+  .pedagogy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 28px;
+    margin-top: 20px;
+  }
+
+  .ped-card {
+    background: #fff;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 6px 30px rgba(15,14,23,0.1);
+    transition: transform 0.35s, box-shadow 0.35s;
+  }
+  .ped-card:hover { transform: translateY(-10px); box-shadow: 0 24px 70px rgba(15,14,23,0.15); }
+
+  .ped-header {
+    padding: 28px 28px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .ped-emoji {
+    font-size: 2.5rem;
+    line-height: 1;
+    flex-shrink: 0;
+    background: rgba(255,255,255,0.3);
+    padding: 10px;
+    border-radius: 14px;
+  }
+  .ped-header-text h3 { font-size: 1.25rem; font-weight: 800; color: #fff; }
+  .ped-header-text .ped-sub { font-size: 0.82rem; color: rgba(255,255,255,0.75); margin-top: 4px; font-weight: 500; }
+
+  .ped-body { padding: 24px 28px 28px; }
+  .ped-desc { font-size: 0.97rem; color: #444; line-height: 1.8; margin-bottom: 20px; }
+
+  .ped-points { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .ped-points li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.93rem;
+    color: #333;
+    line-height: 1.6;
+  }
+  .ped-points li::before {
+    content: '✦';
+    font-size: 0.7rem;
+    margin-top: 4px;
+    flex-shrink: 0;
+  }
+
+  .ped-quote {
+    margin-top: 20px;
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 1.6;
+  }
+
+  /* Color themes for each card */
+  .ped-differenciee .ped-header { background: linear-gradient(135deg, #6a3b8f, #9b59b6); }
+  .ped-differenciee .ped-points li::before { color: #9b59b6; }
+  .ped-differenciee .ped-quote { background: #f3e5f5; color: #4a235a; }
+
+  .ped-erreur .ped-header { background: linear-gradient(135deg, #c0392b, #e74c3c); }
+  .ped-erreur .ped-points li::before { color: #c0392b; }
+  .ped-erreur .ped-quote { background: #ffebee; color: #7b241c; }
+
+  .ped-projet .ped-header { background: linear-gradient(135deg, #1a6fa8, #2980b9); }
+  .ped-projet .ped-points li::before { color: #1a6fa8; }
+  .ped-projet .ped-quote { background: #e3f2fd; color: #0d4c75; }
+
+  .ped-probleme .ped-header { background: linear-gradient(135deg, #e8a020, #f39c12); }
+  .ped-probleme .ped-points li::before { color: #e8a020; }
+  .ped-probleme .ped-quote { background: #fff8e1; color: #7d4e00; }
+
+  .ped-integration .ped-header { background: linear-gradient(135deg, #0a6e6e, #12a89a); }
+  .ped-integration .ped-points li::before { color: #0a6e6e; }
+  .ped-integration .ped-quote { background: #e0f2f1; color: #004d40; }
+
+  .ped-soutien .ped-header { background: linear-gradient(135deg, #1a7a4a, #27ae60); }
+  .ped-soutien .ped-points li::before { color: #1a7a4a; }
+  .ped-soutien .ped-quote { background: #e8f5e9; color: #0d3b22; }
+
+  .ped-maitrise .ped-header { background: linear-gradient(135deg, #2c3e50, #34495e); }
+  .ped-maitrise .ped-points li::before { color: #2c3e50; }
+  .ped-maitrise .ped-quote { background: #ecf0f1; color: #1a252f; }
+
+  /* ===== GENERATION 2 ===== */
+  .gen2-section { padding: 90px 24px; max-width: 1200px; margin: 0 auto; }
+
+  .gen2-header-card {
+    background: linear-gradient(135deg, var(--ink) 0%, #1a1a2e 100%);
+    border-radius: 28px;
+    padding: 50px 48px;
+    margin-bottom: 50px;
+    position: relative;
+    overflow: hidden;
+  }
+  .gen2-header-card::before {
+    content: '2';
+    position: absolute;
+    font-size: 20rem;
+    font-weight: 900;
+    color: rgba(255,255,255,0.03);
+    right: -40px;
+    top: -60px;
+    line-height: 1;
+    font-family: 'Cairo', sans-serif;
+  }
+  .gen2-header-card h2 { font-size: 2rem; font-weight: 900; color: #fff; margin-bottom: 16px; }
+  .gen2-header-card h2 em { color: var(--gold-light); font-style: normal; }
+  .gen2-header-card p { color: rgba(255,255,255,0.7); font-size: 1.05rem; line-height: 1.85; max-width: 800px; }
+
+  .gen2-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  .gen2-feat {
+    background: #fff;
+    border-radius: 18px;
+    padding: 26px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    transition: transform 0.3s;
+  }
+  .gen2-feat:hover { transform: translateY(-5px); }
+  .gen2-feat-icon {
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    flex-shrink: 0;
+  }
+  .gen2-feat-text h4 { font-size: 1rem; font-weight: 800; margin-bottom: 6px; }
+  .gen2-feat-text p { font-size: 0.88rem; color: #666; line-height: 1.6; }
+
+  /* ===== COMPETENCY TYPES ===== */
+  .comp-types-section { background: var(--ink); padding: 80px 24px; }
+  .comp-types-inner { max-width: 1100px; margin: 0 auto; }
+  .comp-types-section .section-title { color: var(--cream); }
+  .comp-types-section .section-title span { color: var(--gold); }
+
+  .comp-types-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+  }
+  @media (max-width: 768px) { .comp-types-grid { grid-template-columns: 1fr; } }
+
+  .comp-type-card {
+    border-radius: 20px;
+    padding: 28px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  .comp-type-card:hover { transform: scale(1.03); }
+  .ct-1 { background: linear-gradient(135deg, #0a6e6e, #12a89a); }
+  .ct-2 { background: linear-gradient(135deg, #6a3b8f, #9b59b6); }
+  .ct-3 { background: linear-gradient(135deg, #e8a020, #f39c12); color: var(--ink) !important; }
+
+  .comp-type-card .ct-num {
+    font-size: 4rem;
+    font-weight: 900;
+    opacity: 0.15;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    line-height: 1;
+  }
+  .comp-type-card h3 { font-size: 1.2rem; font-weight: 800; color: #fff; margin-bottom: 12px; }
+  .ct-3 h3 { color: var(--ink); }
+  .comp-type-card p { font-size: 0.92rem; color: rgba(255,255,255,0.8); line-height: 1.75; }
+  .ct-3 p { color: rgba(15,14,23,0.75); }
+  .comp-type-card .ct-examples { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .ct-tag {
+    background: rgba(255,255,255,0.2);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 50px;
+  }
+  .ct-3 .ct-tag { background: rgba(0,0,0,0.12); color: var(--ink); }
+
+  /* ===== TEACHER ROLE ===== */
+  .teacher-section { padding: 80px 24px; max-width: 1100px; margin: 0 auto; }
+  .role-compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 30px;
+  }
+  @media (max-width: 700px) { .role-compare { grid-template-columns: 1fr; } }
+  .role-card {
+    border-radius: 22px;
+    padding: 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .role-old { background: #fff0f0; border: 2px solid #ffcdd2; }
+  .role-new { background: #e8f8f5; border: 2px solid #b2dfdb; }
+  .role-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 50px;
+    margin-bottom: 18px;
+  }
+  .role-old .role-badge { background: #ffcdd2; color: #c0392b; }
+  .role-new .role-badge { background: #b2dfdb; color: #0a6e6e; }
+  .role-card h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 20px; }
+  .role-old h3 { color: #c0392b; }
+  .role-new h3 { color: #0a6e6e; }
+  .role-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .role-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.97rem;
+    line-height: 1.6;
+    color: #333;
+  }
+  .role-list li .ri { font-size: 1rem; margin-top: 2px; flex-shrink: 0; }
+
+  /* ===== SITUATION PROBLEME ===== */
+  .situation-section { background: #f7f5ef; padding: 80px 24px; }
+  .situation-inner { max-width: 1100px; margin: 0 auto; }
+  .situation-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 40px;
+    position: relative;
+  }
+  .situation-flow::before {
+    content: '';
+    position: absolute;
+    right: 32px;
+    top: 40px;
+    bottom: 40px;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--teal), var(--gold));
+    border-radius: 10px;
+  }
+  .flow-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 20px 0;
+    position: relative;
+  }
+  .flow-num {
+    width: 68px; height: 68px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    font-weight: 900;
+    color: #fff;
+    flex-shrink: 0;
+    z-index: 1;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  }
+  .fn-1 { background: var(--teal); }
+  .fn-2 { background: var(--purple); }
+  .fn-3 { background: var(--sky); }
+  .fn-4 { background: var(--gold); color: var(--ink); }
+  .fn-5 { background: var(--green); }
+
+  .flow-content {
+    background: #fff;
+    border-radius: 18px;
+    padding: 24px 28px;
+    flex: 1;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    margin-bottom: 16px;
+  }
+  .flow-content h4 { font-size: 1.1rem; font-weight: 800; margin-bottom: 8px; }
+  .flow-content p { font-size: 0.95rem; color: #555; line-height: 1.7; }
+
+  /* ===== EVALUATION ===== */
+  .eval-section { padding: 80px 24px; max-width: 1100px; margin: 0 auto; }
+  .eval-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+  }
+  .eval-card {
+    border-radius: 20px;
+    padding: 30px 24px;
+    text-align: center;
+    transition: transform 0.3s;
+  }
+  .eval-card:hover { transform: translateY(-6px); }
+  .ec-1 { background: linear-gradient(135deg, #1a6fa8, #2980b9); }
+  .ec-2 { background: linear-gradient(135deg, #0a6e6e, #12a89a); }
+  .ec-3 { background: linear-gradient(135deg, #1a7a4a, #27ae60); }
+  .eval-card .ec-icon { font-size: 2.5rem; margin-bottom: 14px; }
+  .eval-card h4 { font-size: 1.1rem; font-weight: 800; color: #fff; margin-bottom: 10px; }
+  .eval-card p { font-size: 0.9rem; color: rgba(255,255,255,0.8); line-height: 1.7; }
+
+  /* ===== FOOTER SUMMARY ===== */
+  .summary-section {
+    background: var(--ink);
+    padding: 80px 24px;
+    text-align: center;
+  }
+  .summary-inner { max-width: 800px; margin: 0 auto; }
+  .summary-section h2 { font-size: 2.2rem; font-weight: 900; color: var(--cream); margin-bottom: 20px; }
+  .summary-section h2 span { color: var(--gold); }
+  .summary-section p { color: rgba(255,252,242,0.6); font-size: 1.1rem; line-height: 1.85; margin-bottom: 40px; }
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 600px) { .summary-grid { grid-template-columns: 1fr; } }
+  .sum-item {
+    background: rgba(255,252,242,0.06);
+    border: 1px solid rgba(255,252,242,0.1);
+    border-radius: 16px;
+    padding: 24px 16px;
+    transition: background 0.3s;
+  }
+  .sum-item:hover { background: rgba(232,160,32,0.15); }
+  .sum-item .si-icon { font-size: 2rem; margin-bottom: 10px; }
+  .sum-item h4 { color: var(--gold); font-size: 1rem; font-weight: 800; margin-bottom: 6px; }
+  .sum-item p { color: rgba(255,252,242,0.55); font-size: 0.88rem; line-height: 1.6; }
+
+  /* ===== ANIMATIONS ON SCROLL ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== NAV ===== */
+  .sticky-nav {
+    position: fixed;
+    top: 0; right: 0; left: 0;
+    z-index: 100;
+    background: rgba(15,14,23,0.92);
+    backdrop-filter: blur(12px);
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    transform: translateY(-100%);
+    transition: transform 0.4s;
+  }
+  .sticky-nav.shown { transform: translateY(0); }
+  .nav-logo { color: var(--gold); font-weight: 800; font-size: 1rem; }
+  .nav-links { display: flex; gap: 24px; }
+  .nav-links a {
+    color: rgba(255,252,242,0.6);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--cream); }
+  ::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 3px; }
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="sticky-nav" id="nav">
+  <div class="nav-logo">المقاربة بالكفاءات</div>
+  <div class="nav-links">
+    <a href="#competency">الكفاءة</a>
+    <a href="#pedagogy">البيداغوجيات</a>
+    <a href="#gen2">الجيل الثاني</a>
+    <a href="#evaluation">التقويم</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-circles">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="hero-badge">الفصل الثاني • المدرسة الجزائرية</div>
+  <h1>المقاربة <span>بالكفاءات</span><br>والبيداغوجيات النشطة</h1>
+  <p class="hero-sub">دليلك الشامل لفهم كيف تحوّلت المدرسة الجزائرية من التلقين إلى بناء الكفاءات ومواجهة الحياة الحقيقية</p>
+  <div class="hero-scroll">
+    <span class="hero-pill">🧠 بناء المعرفة</span>
+    <span class="hero-pill">🎯 وضعيات مشكلة</span>
+    <span class="hero-pill">🤝 التعلم النشط</span>
+    <span class="hero-pill">📊 تقويم حقيقي</span>
+    <span class="hero-pill">🌱 الجيل الثاني</span>
+  </div>
+</section>
+
+<!-- SECTION 1: ما هي الكفاءة؟ -->
+<section class="section" id="competency">
+  <div class="reveal">
+    <div class="section-label">01 — تعريف</div>
+    <h2 class="section-title">ما هي <span>الكفاءة</span>؟</h2>
+    <p class="section-desc">الكفاءة ليست مجرد حفظ معلومات، بل هي القدرة على توظيف ما تعلّمته لمواجهة وضعية حقيقية من الحياة.</p>
+  </div>
+
+  <div class="competency-banner reveal">
+    <div>
+      <h2>الكفاءة = <em>تجنيد الموارد</em><br>لحلّ وضعية مشكلة</h2>
+      <p>يُعرّف علي فارس الكفاءة بأنها تجنيد المتعلم لمجموعة من الموارد — معارف، مهارات، مواقف — من أجل حلّ وضعية ذات دلالة تنتمي إلى عائلة من الوضعيات. والكفاءة تُبنى في الوضعية المركّبة لأنها مقياس حقيقي لما يستطيع المتعلم فعله.</p>
+    </div>
+    <div class="formula-box">
+      <div class="formula-title">✦ مكوّنات الكفاءة ✦</div>
+      <div class="formula-items">
+        <div class="formula-item"><span class="formula-icon">📚</span> المعارف (Les Savoirs)</div>
+        <div class="formula-eq">+</div>
+        <div class="formula-item"><span class="formula-icon">🔧</span> المهارات / القدرات (Savoir-Faire)</div>
+        <div class="formula-eq">+</div>
+        <div class="formula-item"><span class="formula-icon">❤️</span> السلوك / المواقف (Savoir-Être)</div>
+        <div class="formula-eq">=</div>
+        <div class="formula-item" style="background:rgba(232,160,32,0.3);font-size:1.1rem;"><span class="formula-icon">⭐</span> الكفاءة</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Principles -->
+  <div class="reveal">
+    <div class="section-label">02 — المبادئ</div>
+    <h2 class="section-title">مبادئ التدريس <span>بالكفاءات</span></h2>
+    <p class="section-desc">تقوم بيداغوجيا الكفاءات على جملة من المبادئ التي تجعل التعلم حقيقياً وفعّالاً.</p>
+  </div>
+
+  <div class="principles-grid">
+    <div class="principle-card pc-1 reveal">
+      <div class="p-icon">🌐</div>
+      <h3 class="p-title">الإجمالية (Globalité)</h3>
+      <p class="p-text">تحليل الكفاءة انطلاقاً من وضعية شاملة ومعقدة، أي النظرة الكلية لا التجزيئية. المتعلم يواجه الموقف كوحدة متكاملة.</p>
+    </div>
+    <div class="principle-card pc-2 reveal">
+      <div class="p-icon">🏗️</div>
+      <h3 class="p-title">البناء (Construction)</h3>
+      <p class="p-text">تفعيل المكتسبات القبلية وبناء مكتسبات جديدة وتنظيم المعارف. المتعلم بانٍ لمعرفته لا متلقٍّ لها.</p>
+    </div>
+    <div class="principle-card pc-3 reveal">
+      <div class="p-icon">⚙️</div>
+      <h3 class="p-title">التطبيق (Application)</h3>
+      <p class="p-text">التعلم بالتصرف. الكفاءة تُعرف بأنها القدرة على التصرف. المهم أن يكون المتعلم نشطاً في تعلمه.</p>
+    </div>
+    <div class="principle-card pc-4 reveal">
+      <div class="p-icon">🔄</div>
+      <h3 class="p-title">التكرار (Itération)</h3>
+      <p class="p-text">وضع المتعلم مرات عدة أمام نفس المهام الإدماجية في علاقة مع الكفاءة وأمام نفس المحتويات. التكرار يُرسّخ الكفاءة.</p>
+    </div>
+    <div class="principle-card pc-5 reveal">
+      <div class="p-icon">🔗</div>
+      <h3 class="p-title">الإدماج (Intégration)</h3>
+      <p class="p-text">ربط عناصر المادة بعضها ببعض لأن إنماء الكفاءة يكون بتوظيف مكوناتها بشكل إدماجي لا منفصل.</p>
+    </div>
+    <div class="principle-card pc-6 reveal">
+      <div class="p-icon">↔️</div>
+      <h3 class="p-title">التحويل (Transfert)</h3>
+      <p class="p-text">الانتقال من مهمة أصلية إلى مهمة مستهدفة باستعمال معارف ومهارات مكتسبة في وضعية مغايرة. هذا هو أعلى مستويات الكفاءة.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE TABLE -->
+<div class="compare-section" id="compare">
+  <div class="compare-inner">
+    <div class="reveal">
+      <div class="section-label" style="background:rgba(255,252,242,0.1);color:var(--gold);">03 — المقارنة</div>
+      <h2 class="section-title">المقاربة بالأهداف <span>مقابل</span> المقاربة بالكفاءات</h2>
+      <p class="section-desc">فهم الفرق الجوهري بين المقاربتين يوضح لماذا تُعدّ الكفاءات خطوة نوعية للأمام.</p>
+    </div>
+    <table class="compare-table reveal">
+      <thead>
+        <tr>
+          <th class="th-aspect">وجه المقارنة</th>
+          <th class="th-old">🔴 المقاربة بالأهداف</th>
+          <th class="th-new">🟢 المقاربة بالكفاءات</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="td-aspect">منطق التعليم</td>
+          <td class="td-old">اكتساب المفاهيم والمهارات</td>
+          <td class="td-new">توظيف المفاهيم والمهارات في الحياة اليومية</td>
+        </tr>
+        <tr>
+          <td class="td-aspect">دور المعلم</td>
+          <td class="td-old">يُلقّن ويأمر وينهى</td>
+          <td class="td-new">موجّه ومرشد يساعد على بناء المعرفة</td>
+        </tr>
+        <tr>
+          <td class="td-aspect">دور التلميذ</td>
+          <td class="td-old">يستقبل المعلومات بشكل سلبي</td>
+          <td class="td-new">فاعل نشط يُجرّب ويكتسب ويحقق</td>
+        </tr>
+        <tr>
+          <td class="td-aspect">الخطأ</td>
+          <td class="td-old">يترتب عنه جزاء</td>
+          <td class="td-new">مؤشر لتعديل المسار وبناء التعلمات</td>
+        </tr>
+        <tr>
+          <td class="td-aspect">المعيار</td>
+          <td class="td-old">المحتوى هو المعيار</td>
+          <td class="td-new">الكفاءة هي المعيار</td>
+        </tr>
+        <tr>
+          <td class="td-aspect">استراتيجية التعليم</td>
+          <td class="td-old">استراتيجية عامة تهم الجميع</td>
+          <td class="td-new">إستراتيجية فردية للتعليم الخاص بكل فرد</td>
+        </tr>
+        <tr>
+          <td class="td-aspect">التقويم</td>
+          <td class="td-old">تحصيلي — يعتمد على حفظ المعارف</td>
+          <td class="td-new">مرحلي — تكويني يعتمد اكتساب الكفاءة وتوظيفها في مختلف المواقف</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- PEDAGOGY SECTION -->
+<section class="pedagogy-section" id="pedagogy">
+  <div class="pedagogy-inner">
+    <div class="reveal">
+      <div class="section-label">04 — البيداغوجيات النشطة</div>
+      <h2 class="section-title">البيداغوجيات <span>النشطة</span></h2>
+      <p class="section-desc">هي البيداغوجيات التي تُفعّل المقاربة بالكفاءات وتجعل المتعلم محوراً للعملية التعليمية.</p>
+    </div>
+
+    <div class="pedagogy-grid">
+
+      <!-- 1. الفارقية -->
+      <div class="ped-card ped-differenciee reveal">
+        <div class="ped-header">
+          <div class="ped-emoji">🎭</div>
+          <div class="ped-header-text">
+            <h3>البيداغوجيا الفارقية</h3>
+            <div class="ped-sub">Pédagogie Différenciée</div>
+          </div>
+        </div>
+        <div class="ped-body">
+          <p class="ped-desc">تنطلق من حقيقة أن التلاميذ داخل قسم واحد يختلفون في قدراتهم العقلية والوجدانية والحركية. لذا لا يمكن تدريسهم بطريقة واحدة.</p>
+          <ul class="ped-points">
+            <li>تأخذ في الاعتبار الفوارق الفردية الموجودة بين المتعلمين</li>
+            <li>تقديم أنشطة ومحتويات تتلاءم مع مستويات التلاميذ المختلفة</li>
+            <li>تشغيل وسائل ديداكتيكية مختلفة لتقليل الفوارق الكمية</li>
+            <li>توظيف أساليب التقويم والدعم المناسبة لكل متعلم</li>
+            <li>تحقيق تكافؤ الفرص بين تلاميذ الفصل الدراسي</li>
+          </ul>
+          <div class="ped-quote">💬 "يا معشر الأساتذة ابدأوا بمعرفة تلاميذكم، فإنكم بلا تأكيد لا تعرفونهم" — جون جاك روسو</div>
+        </div>
+      </div>
+
+      <!-- 2. الخطأ -->
+      <div class="ped-card ped-erreur reveal">
+        <div class="ped-header">
+          <div class="ped-emoji">💡</div>
+          <div class="ped-header-text">
+            <h3>بيداغوجيا الخطأ</h3>
+            <div class="ped-sub">Pédagogie de l'Erreur</div>
+          </div>
+        </div>
+        <div class="ped-body">
+          <p class="ped-desc">تعتبر الخطأ إستراتيجية للتعليم لأن الوضعيات التعليمية تُبنى على جهود المتعلم وبحثه. الخطأ حق طبيعي وإنساني ومُصدر للتعلم.</p>
+          <ul class="ped-points">
+            <li>الخطأ مرحلة أساسية من مراحل بناء المعرفة</li>
+            <li>وظائفه: تعليمية، تكوينية، علاجية، توجيهية، إصلاحية، إدماجية</li>
+            <li>نوعان: أخطاء منتظمة (تكرار) وأخطاء عشوائية (غير منظمة)</li>
+            <li>المقاربة التقليدية ترى الخطأ جريمة — المقاربة الحديثة ترى الخطأ حق</li>
+            <li>للأستاذ أن يُدرّس بالخطأ في بعض الحالات ويُقدّم التغذية الراجعة</li>
+          </ul>
+          <div class="ped-quote">💬 "إن أخطاء تلامذتنا هي جزء من تاريخهم الشخصي يحمله كل ما يحمله هذا التاريخ من معارف وتجارب وتخيلات" — باشلار</div>
+        </div>
+      </div>
+
+      <!-- 3. المشروع -->
+      <div class="ped-card ped-projet reveal">
+        <div class="ped-header">
+          <div class="ped-emoji">🚀</div>
+          <div class="ped-header-text">
+            <h3>بيداغوجيا المشروع</h3>
+            <div class="ped-sub">Pédagogie du Projet</div>
+          </div>
+        </div>
+        <div class="ped-body">
+          <p class="ped-desc">تقوم على اقتراح مشاريع للمتعلمين في صيغة وضعيات تعليمية مرتبطة بالكفاءات المستهدفة. هي أنجح الأساليب في المقاربة بالكفاءات لأنها تُجسّد الإدماج.</p>
+          <ul class="ped-points">
+            <li>ليست مجرد خطوات أو إجراءات — بل أوسع من ذلك</li>
+            <li>تربط التعلم بمواقف الحياة الاجتماعية والاقتصادية والثقافية</li>
+            <li>تُنمّي الذكاء الاجتماعي والتشجيع على التعاون بين المتعلمين</li>
+            <li>المعارف ليست غاية — بل وسيلة للتكيف وحل مشاكل الحياة</li>
+            <li>تُحقق استقلالية التعلم الذاتي وتنمية القدرة على الإبداع</li>
+          </ul>
+          <div class="ped-quote">💬 المشروع هدفه أن تُصبح المعارف وسيلة لا غاية في حد ذاتها، وسيلة من أجل التكيف وحل مشاكل الحياة.</div>
+        </div>
+      </div>
+
+      <!-- 4. حل المشكلات -->
+      <div class="ped-card ped-probleme reveal">
+        <div class="ped-header">
+          <div class="ped-emoji">🧩</div>
+          <div class="ped-header-text">
+            <h3>بيداغوجيا حل المشكلات</h3>
+            <div class="ped-sub">Résolution de Problèmes</div>
+          </div>
+        </div>
+        <div class="ped-body">
+          <p class="ped-desc">تعتمد على الوضعيات المشكلة لأن الوضعية المشكلة هي الموقف غير المألوف الذي يدفع المتعلم إلى اقتراح الحلول الممكنة لمعالجة الموقف.</p>
+          <ul class="ped-points">
+            <li>تقترح مشكلة معقدة تستدعي مجموعات من التعلمات المتداخلة والمتمحورة</li>
+            <li>المتعلم يستوعب أفضل حين يُفكّر بنفسه في الوضعية</li>
+            <li>الأستاذ يُعدّ مسبقاً المشروع أو المشكل ويحفّز المتعلم للعمل</li>
+            <li>تُقتضي تحديد المشكلة ومواجهتها والبحث عن الحل الناجع</li>
+            <li>وفق خطوات التفكير: يُسمّيها جون ديوي بمراحل حل المشكلة</li>
+          </ul>
+          <div class="ped-quote">💬 المشكلة هي كل ما يُشكّل عقبة أمام المتعلم ويستلزم منه بذل جهد ذهني للوصول إلى حل.</div>
+        </div>
+      </div>
+
+      <!-- 5. الإدماج -->
+      <div class="ped-card ped-integration reveal">
+        <div class="ped-header">
+          <div class="ped-emoji">🔀</div>
+          <div class="ped-header-text">
+            <h3>بيداغوجيا الإدماج</h3>
+            <div class="ped-sub">Pédagogie de l'Intégration</div>
+          </div>
+        </div>
+        <div class="ped-body">
+          <p class="ped-desc">هي إقامة علاقات بين التعلمات والموارد التي اكتسبها المتعلم بصفة مجزأة، والعمل على تنظيمها وتعبئتها من أجل حل وضعيات مركبة.</p>
+          <ul class="ped-points">
+            <li>يكون هدفاً إدماجياً لكل طور ولكل مادة أو لمجموعة مواد متقاربة</li>
+            <li>بيداغوجيا الإدماج تعني إقامة علاقات بين التعلمات بهدف التوصل إلى حلول</li>
+            <li>تتم إعادة الاستعمال والموارد والخبرات السابقة لإعطاء دلالة ومعنى</li>
+            <li>التمكن من الإدماج لا يتحقق بالممارسة العفوية بل يُتدرّب عليه</li>
+            <li>الوضعية الإدماجية: وضعية مركبة ودالة للمتعلم تُعيّن الهدف الإدماجي</li>
+          </ul>
+          <div class="ped-quote">💬 الإدماج = الربط بين التعلمات القديمة والجديدة بهدف التوصل إلى حل وضعيات مركبة.</div>
+        </div>
+      </div>
+
+      <!-- 6. الدعم -->
+      <div class="ped-card ped-soutien reveal">
+        <div class="ped-header">
+          <div class="ped-emoji">🛡️</div>
+          <div class="ped-header-text">
+            <h3>بيداغوجيا الدعم</h3>
+            <div class="ped-sub">Pédagogie de Soutien</div>
+          </div>
+        </div>
+        <div class="ped-body">
+          <p class="ped-desc">تهدف إلى تعزيز مكتسبات المتعلم من مردوديته التحصيلية والمعرفية في مختلف المجالات والميادين التربوية، وتقية المتعلم من كل أسباب الفشل والتأخر المدرسي.</p>
+          <ul class="ped-points">
+            <li>تشخيص تعثرات المتعلم المختلفة وتحديد صعوباته وخطورتها</li>
+            <li>تبيان مواطن القوة والضعف وتصنيف تلك التعثرات حسب طبيعتها</li>
+            <li>السعي نحو حلول واقعية وميدانية لتعويض النقص الذي يعانيه</li>
+            <li>تُحدّد الأخطاء المرتكبة وأسبابها وعلاقتها بالمكتسبات والمؤهلات الذاتية</li>
+            <li>تستعمل اختبارات تشخيصية شفهية وروائز وتقنية الملاحظة وكشف النقط</li>
+          </ul>
+          <div class="ped-quote">💬 الدعم: التحكم الفوري أو المرحلي أو الدائم في تعثرات المتعلم بأنشطة تطبيقية داعمة وهادفة وبنّاءة.</div>
+        </div>
+      </div>
+
+      <!-- 7. التحكم -->
+      <div class="ped-card ped-maitrise reveal">
+        <div class="ped-header">
+          <div class="ped-emoji">🎛️</div>
+          <div class="ped-header-text">
+            <h3>بيداغوجيا التحكم</h3>
+            <div class="ped-sub">Pédagogie de la Maîtrise</div>
+          </div>
+        </div>
+        <div class="ped-body">
+          <p class="ped-desc">تهدف إلى جعل المتعلم متمكناً من الأهداف التعليمية، ومتحكماً فيها، انطلاقاً من ضبط سلوك أولي إلى سلوك نهائي، مروراً بسلسلة من المراحل المتعلقة بمكتسباته.</p>
+          <ul class="ped-points">
+            <li>الأنموذج الزمني لكارول وبلوم: يعتقد أن استعداد المتعلم يعود إلى الزمن الضروري</li>
+            <li>البيداغوجيا التصحيحية لبونبوار: تعدّل التباعدات السلبية بين نتائج المقارنة</li>
+            <li>جعل جميع التلاميذ يتفوّقون في تعلّمهم من خلال تعليم مناسب لخصوصياتهم</li>
+            <li>تكون قادرة على استيعاب كل المتعلمين وفق خصوصياتهم الفردية</li>
+            <li>هدفها: الهدف الأدنى من التعلمات المنشودة يصله جميع التلاميذ</li>
+          </ul>
+          <div class="ped-quote">💬 التحكم = ضمان أن كل متعلم يصل إلى الحد الأدنى المطلوب وفق وتيرته الخاصة.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- GENERATION 2 -->
+<section class="gen2-section" id="gen2">
+  <div class="reveal">
+    <div class="section-label">05 — الجيل الثاني</div>
+    <h2 class="section-title">مناهج <span>الجيل الثاني</span></h2>
+    <p class="section-desc">انتهجت الجزائر مقاربة الكفاءة الشاملة بدءاً من 2017/2016، لتجاوز نقائص الجيل الأول.</p>
+  </div>
+
+  <div class="gen2-header-card reveal">
+    <h2>مناهج الجيل الثاني: <em>الكفاءة الشاملة</em></h2>
+    <p>تسعى مناهج الجيل الثاني إلى جعل المعارف الملموسة بين المواد وجعلها مواد موحدة متكاملة لتشكيل الكفاءة المستهدفة، فهي تُركّز على طرح المكتسبات والسلوكات بالتركيز بالتناول والتعامل بها واستثمارها حتى يصبح المتعلم قادراً على حل مشاكله اليومية.</p>
+  </div>
+
+  <div class="gen2-features">
+    <div class="gen2-feat reveal">
+      <div class="gen2-feat-icon" style="background:#e8f5e9;color:#1a7a4a;">🎯</div>
+      <div class="gen2-feat-text">
+        <h4>الانسجام مع القانون التوجيهي</h4>
+        <p>انسجامها مع الغايات المحددة للنظام التربوي واعتمادها على البنوية الاجتماعية.</p>
+      </div>
+    </div>
+    <div class="gen2-feat reveal">
+      <div class="gen2-feat-icon" style="background:#e3f2fd;color:#1a6fa8;">📦</div>
+      <div class="gen2-feat-text">
+        <h4>الشمولية</h4>
+        <p>بناء منهاج لكل مرحلة تعليمية، وضع خطة شاملة ملمحة تصور شامل وتنازلي للمنهاج.</p>
+      </div>
+    </div>
+    <div class="gen2-feat reveal">
+      <div class="gen2-feat-icon" style="background:#fce4ec;color:#c0392b;">🔗</div>
+      <div class="gen2-feat-text">
+        <h4>الانسجام</h4>
+        <p>إحداث الانسجام الأفقي والعمودي بين المواد لمعالجة تفكك مناهج الجيل الأول.</p>
+      </div>
+    </div>
+    <div class="gen2-feat reveal">
+      <div class="gen2-feat-icon" style="background:#f3e5f5;color:#6a3b8f;">⚙️</div>
+      <div class="gen2-feat-text">
+        <h4>القابلية للتطبيق</h4>
+        <p>التكفل بعملية التكيف مع ظروف الإنجاز والتعامل مع واقع الميدان.</p>
+      </div>
+    </div>
+    <div class="gen2-feat reveal">
+      <div class="gen2-feat-icon" style="background:#fff8e1;color:#e8a020;">✨</div>
+      <div class="gen2-feat-text">
+        <h4>المقروئية والوجاهة</h4>
+        <p>المقروئية: توخي البساطة والوضوح. الوجاهة: التنسيق بين الأهداف التكوينية والحاجات التربوية.</p>
+      </div>
+    </div>
+    <div class="gen2-feat reveal">
+      <div class="gen2-feat-icon" style="background:#e0f7fa;color:#0a6e6e;">🌱</div>
+      <div class="gen2-feat-text">
+        <h4>البنائية الاجتماعية (فيجوتسكي)</h4>
+        <p>المتعلم يبني معرفته من خلال التفاعل الاجتماعي مع الآخرين (الأقران والمعلمين والآباء).</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETENCY TYPES -->
+<div class="comp-types-section">
+  <div class="comp-types-inner">
+    <div class="reveal">
+      <div class="section-label" style="background:rgba(255,252,242,0.1);color:var(--gold);">06 — أنواع الكفاءات</div>
+      <h2 class="section-title">أنواع الكفاءات في <span>الجيل الثاني</span></h2>
+    </div>
+    <div class="comp-types-grid">
+      <div class="comp-type-card ct-1 reveal">
+        <div class="ct-num">1</div>
+        <h3>الكفاءة الشاملة</h3>
+        <p>هدف نسعى إلى تحقيقه في نهاية فترة دراسية محددة وفق نظام المسار الدراسي. لذا نجد كفاءة شاملة في نهاية كل طور وكفاءة شاملة في نهاية كل سنة.</p>
+        <div class="ct-examples">
+          <span class="ct-tag">نهاية طور</span>
+          <span class="ct-tag">نهاية سنة</span>
+          <span class="ct-tag">جميع المواد</span>
+        </div>
+      </div>
+      <div class="comp-type-card ct-2 reveal">
+        <div class="ct-num">2</div>
+        <h3>الكفاءة الختامية</h3>
+        <p>كفاءة مرتبطة بميدان من ميادين المهيكلة للمادة، وتُعبّر بصيغة التصرف (التحكم في الموارد، حُسنُ استعمالها وإدماجها وتحويلها). هي ما هو منتظر من التلميذ في نهاية دراسة ليدان من الميادين المهيكلة للمادة.</p>
+        <div class="ct-examples">
+          <span class="ct-tag">ميدان محدد</span>
+          <span class="ct-tag">التصرف</span>
+          <span class="ct-tag">التحويل</span>
+        </div>
+      </div>
+      <div class="comp-type-card ct-3 reveal">
+        <div class="ct-num">3</div>
+        <h3>الكفاءة العرضية</h3>
+        <p>كفاءة تتكون من المواقف والمساعي العقلية والمنهجية المشتركة بين المواد. يمكن استخدامها خلال بناء مختلف المعارف والمهارات والقيم التي نريد تنميتها. تُصنّف إلى: كفاءات فكرية، منهجية، اجتماعية، تواصلية.</p>
+        <div class="ct-examples">
+          <span class="ct-tag">عبر المواد</span>
+          <span class="ct-tag">منهجية</span>
+          <span class="ct-tag">اجتماعية</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TEACHER ROLE -->
+<section class="teacher-section">
+  <div class="reveal">
+    <div class="section-label">07 — دور المعلم</div>
+    <h2 class="section-title">دور المعلم <span>قبل وبعد</span></h2>
+    <p class="section-desc">تحوّل دور المعلم جذرياً مع المقاربة بالكفاءات، من ملقّن للمعرفة إلى مرشد وموجّه.</p>
+  </div>
+  <div class="role-compare">
+    <div class="role-card role-old reveal">
+      <div class="role-badge">قبل — المقاربة التقليدية</div>
+      <h3>المعلم: مالك المعرفة</h3>
+      <ul class="role-list">
+        <li><span class="ri">🔴</span> المعلم مالكٌ للمعرفة ويُقدّمها للتلميذ</li>
+        <li><span class="ri">🔴</span> التلميذ جاهل بالمادة ومستهلك للمعلومات</li>
+        <li><span class="ri">🔴</span> المعلم متكلّم والتلميذ مستمع سامع</li>
+        <li><span class="ri">🔴</span> المعلم منتج للمعرفة والتلميذ مستقبل لها</li>
+        <li><span class="ri">🔴</span> تقتصر وسيلة التعليم على الكتاب المدرسي</li>
+        <li><span class="ri">🔴</span> التقويم ينحصر في الامتحان والذاكرة</li>
+      </ul>
+    </div>
+    <div class="role-card role-new reveal">
+      <div class="role-badge">بعد — المقاربة بالكفاءات</div>
+      <h3>المعلم: مرشد وموجّه</h3>
+      <ul class="role-list">
+        <li><span class="ri">🟢</span> المعلم فهو مقترح يساعد لتجاوز العقبات</li>
+        <li><span class="ri">🟢</span> التلميذ محور العملية التعليمية ويكتسب ويحقق</li>
+        <li><span class="ri">🟢</span> المعلم يوجّه المتعلم، والتعلم يتصف بالتشاركية</li>
+        <li><span class="ri">🟢</span> المتعلم نشط فاعل يبني معرفته بنفسه</li>
+        <li><span class="ri">🟢</span> يستثير المعلم أقصى قدرات المتعلم العقلية</li>
+        <li><span class="ri">🟢</span> التقويم = إنتاج في وضعيات معقدة ومركبة</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SITUATION PROBLEME -->
+<div class="situation-section" id="situation">
+  <div class="situation-inner">
+    <div class="reveal">
+      <div class="section-label">08 — الوضعية المشكلة</div>
+      <h2 class="section-title">مراحل حل <span>الوضعية المشكلة</span></h2>
+      <p class="section-desc">الوضعية المشكلة هي قلب المقاربة بالكفاءات، وهذه هي المراحل التي يمر بها حلّها.</p>
+    </div>
+    <div class="situation-flow">
+      <div class="flow-step reveal">
+        <div class="flow-num fn-1">1</div>
+        <div class="flow-content">
+          <h4>تحديد المشكلة وتسميتها</h4>
+          <p>الأستاذ يعرض المشكلة ويُحدّدها بشكل واضح، ويُبيّن للمتعلم طبيعة الوضعية غير المألوفة التي يواجهها ويستلزم التعامل معها.</p>
+        </div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-num fn-2">2</div>
+        <div class="flow-content">
+          <h4>مواجهة المشكلة واستقبالها</h4>
+          <p>المتعلم يواجه المشكلة ويُقبل عليها لينتيه إليها، مُظهراً رغبة في إيجاد الحل أو الحلول الناجعة لها عبر بذل جهد ذهني.</p>
+        </div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-num fn-3">3</div>
+        <div class="flow-content">
+          <h4>إعداد مشروع الحل وتوثيقه</h4>
+          <p>الأستاذ يعد مسبقاً مشروع الحل أو المشكل الذي قد يكون هيّأه من قبل. يسيقوم بتوثيق الحل مباشرة لإنتاج أنموذج الحل عبر البحث في جوانب المشكلة.</p>
+        </div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-num fn-4">4</div>
+        <div class="flow-content">
+          <h4>تفكيك المشكلة والبحث عن الحل</h4>
+          <p>يُفكّك المتعلم المشكلة ويقترح حلولاً ممكنة لها لينتهي به الأمر إلى إيجاد الحل الذي يُناسبها. إذا لم يكن مُلمّاً بجوانبها يبحث عن عناصر مؤلّفة.</p>
+        </div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="flow-num fn-5">5</div>
+        <div class="flow-content">
+          <h4>التقويم والتقاسم</h4>
+          <p>تقديم الحلول ومناقشتها جماعياً، والتقويم كعنصر مرتبط بعملية التعلم يهدف إلى الضبط والتعديل ودرجة اكتساب الكفاءة وتوظيفها في مختلف المواقف.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EVALUATION -->
+<section class="eval-section" id="evaluation">
+  <div class="reveal">
+    <div class="section-label">09 — التقويم</div>
+    <h2 class="section-title">التقويم في ظل <span>المقاربة بالكفاءات</span></h2>
+    <p class="section-desc">لم يعد التقويم مجرد امتحان يعتمد الذاكرة، بل أصبح عنصراً مرتبطاً بعملية التعلم نفسها.</p>
+  </div>
+  <div class="eval-cards">
+    <div class="eval-card ec-1 reveal">
+      <div class="ec-icon">🔍</div>
+      <h4>التشخيصي</h4>
+      <p>يُجرى قبل التعلم لمعرفة المكتسبات القبلية للمتعلمين وتحديد نقطة الانطلاق المناسبة.</p>
+    </div>
+    <div class="eval-card ec-2 reveal">
+      <div class="ec-icon">⚙️</div>
+      <h4>التكويني</h4>
+      <p>يتم أثناء التعلم لضبط المسار وتعديله ومساعدة المتعلم على تجاوز صعوباته بصفة مستمرة.</p>
+    </div>
+    <div class="eval-card ec-3 reveal">
+      <div class="ec-icon">🏆</div>
+      <h4>الختامي / الإجمالي</h4>
+      <p>يُجرى في نهاية التعلم لتحديد درجة اكتساب الكفاءة عبر وضعيات إدماجية معقدة ومركبة.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SUMMARY -->
+<div class="summary-section">
+  <div class="summary-inner">
+    <div class="reveal">
+      <h2>خلاصة: لماذا <span>الكفاءات</span>؟</h2>
+      <p>المقاربة بالكفاءات ليست مجرد إصلاح بيداغوجي، بل تحوّل فلسفي عميق في النظرة إلى التعليم والمتعلم والمعرفة. هدفها تخريج مواطن قادر على مواجهة تحديات الحياة.</p>
+    </div>
+    <div class="summary-grid reveal">
+      <div class="sum-item">
+        <div class="si-icon">🧠</div>
+        <h4>المتعلم في المركز</h4>
+        <p>تحوّل الاهتمام من المادة إلى المتعلم وبناء شخصيته الكاملة.</p>
+      </div>
+      <div class="sum-item">
+        <div class="si-icon">🌍</div>
+        <h4>ربط التعليم بالحياة</h4>
+        <p>ما يتعلمه التلميذ في المدرسة يوظّفه في حياته اليومية والمهنية.</p>
+      </div>
+      <div class="sum-item">
+        <div class="si-icon">🚀</div>
+        <h4>التعلم النشط</h4>
+        <p>المتعلم يبني معرفته بنفسه ويطوّر قدراته عبر المشاركة الفعلية.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CHAPTER 3 SECTION ===== -->
+<section class="section" style="background: linear-gradient(135deg, rgba(26, 122, 74, 0.05) 0%, rgba(10, 110, 110, 0.05) 100%);">
+  <div class="reveal">
+    <div class="section-label" style="background:var(--green);color:#fff;">الفصل الثالث</div>
+    <h2 class="section-title">التقييم والقيادة <span>التعليمية</span></h2>
+    <p class="section-desc">يركز الفصل الثالث على أدوات التقييم الفعّالة وأنماط القيادة التربوية التي تدعم المقاربة بالكفاءات وتحقق أهدافها.</p>
+  </div>
+</section>
+
+<!-- ASSESSMENT TOOLS SECTION -->
+<div class="comp-types-section" style="background: var(--cream);">
+  <div class="comp-types-inner">
+    <div class="reveal">
+      <div class="section-label" style="background:rgba(26, 122, 74, 0.1);color:var(--green);">أدوات التقييم الأساسية</div>
+      <h2 class="section-title">أدوات التقييم <span>الفعّالة</span></h2>
+    </div>
+    <div class="comp-types-grid">
+      <div class="comp-type-card ct-1 reveal">
+        <div class="ct-num" style="background:var(--green);">1</div>
+        <h3>بطاقة الملاحظة</h3>
+        <p>أداة منظمة لتقييم سلوكات التلميذ وأدائه أثناء الحصة مباشرة. تتضمن معايير واضحة مسبقاً وتُسجل ملاحظات موضوعية عن مستوى إتقان الكفاءات والمهارات المختلفة.</p>
+        <div class="ct-examples">
+          <span class="ct-tag">مستمرة ومباشرة</span>
+          <span class="ct-tag">تقويم تكويني</span>
+          <span class="ct-tag">فردية وجماعية</span>
+        </div>
+      </div>
+      <div class="comp-type-card ct-2 reveal">
+        <div class="ct-num" style="background:var(--green);">2</div>
+        <h3>سلّم التقدير (Rubrique)</h3>
+        <p>معايير تقييم محددة بدقة لقياس جودة أداء التلميذ. كل مستوى يحمل وصفاً واضحاً ودرجة نقاط محددة. تُستخدم بكثرة لتقييم الأعمال الكتابية والمشاريع والإنتاجات الفكرية.</p>
+        <div class="ct-examples">
+          <span class="ct-tag">معايير واضحة</span>
+          <span class="ct-tag">درجات محددة</span>
+          <span class="ct-tag">موضوعية عالية</span>
+        </div>
+      </div>
+      <div class="comp-type-card ct-3 reveal">
+        <div class="ct-num" style="background:var(--green);">3</div>
+        <h3>الاختبار المكتوب</h3>
+        <p>أداة قياسية موضوعية لقياس المكتسبات المعرفية والفهم. يجب أن يقيس الكفاءات الحقيقية وليس الحفظ الآلي. يتضمن أسئلة متنوعة الأنواع تقيس مستويات معرفية مختلفة (فهم، تطبيق، تحليل).</p>
+        <div class="ct-examples">
+          <span class="ct-tag">أسئلة متنوعة</span>
+          <span class="ct-tag">تطبيقية وتحليلية</span>
+          <span class="ct-tag">تقويم ختامي</span>
+        </div>
+      </div>
+      <div class="comp-type-card ct-1 reveal">
+        <div class="ct-num" style="background:var(--green);">4</div>
+        <h3>المشروع والإنتاج</h3>
+        <p>وضعية إدماجية معقدة ومركبة يقوم بها التلميذ بشكل فردي أو جماعي على مدى وقت معين. يدمج معارف ومهارات متعددة ويُظهر القدرة على التصرف، الابتكار، والتحويل الفعلي للمعارف.</p>
+        <div class="ct-examples">
+          <span class="ct-tag">وضعيات إدماجية</span>
+          <span class="ct-tag">جماعية أو فردية</span>
+          <span class="ct-tag">تحويل المعارف</span>
+        </div>
+      </div>
+      <div class="comp-type-card ct-2 reveal">
+        <div class="ct-num" style="background:var(--green);">5</div>
+        <h3>الحقيبة الإنجازية</h3>
+        <p>مجموعة منظمة ومختارة بعناية من أعمال التلميذ وإنجازاته تُجمع على مدى فترة زمنية (فصل أو سنة). تعكس التطور والنمو والنقاط القوية والضعيفة والجهد المبذول.</p>
+        <div class="ct-examples">
+          <span class="ct-tag">تراكمية ومتطورة</span>
+          <span class="ct-tag">شاملة وموثقة</span>
+          <span class="ct-tag">تقييم ذاتي</span>
+        </div>
+      </div>
+      <div class="comp-type-card ct-3 reveal">
+        <div class="ct-num" style="background:var(--green);">6</div>
+        <h3>الاختبار الشفوي</h3>
+        <p>تقييم مباشر وتفاعلي للفهم العميق والقدرة على التعبير والحوار والاستدلال. يقيس القدرات اللغوية والفكرية والاستدلالية والقدرة على الدفاع عن الأفكار.</p>
+        <div class="ct-examples">
+          <span class="ct-tag">تواصلية وتفاعلية</span>
+          <span class="ct-tag">حوارية وفورية</span>
+          <span class="ct-tag">قياس الفهم العميق</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ASSESSMENT CRITERIA SECTION -->
+<section class="teacher-section">
+  <div class="reveal">
+    <div class="section-label">مواصفات التقييم الجيد</div>
+    <h2 class="section-title">معايير التقييم <span>الفعال والموثوق</span></h2>
+    <p class="section-desc">التقييم الجيد يجب أن يتمتع بمجموعة من الخصائص التي تضمن صدقه وموثوقيته وعدالته.</p>
+  </div>
+  <div class="principles-grid" style="margin-top:50px;">
+    <div class="principle-card reveal" style="border-top-color:var(--green);">
+      <div class="pc-header" style="background:rgba(26, 122, 74, 0.08); color:var(--green);">
+        <div class="pc-icon">✓</div>
+        <h3>الصدق (Validité)</h3>
+      </div>
+      <p>أن يقيس التقييم فعلاً ما نريد قياسه، لا شيء أكثر ولا أقل. التقييم الصادق يقيس الكفاءات المقصودة بدقة وليس جوانب أخرى لا علاقة لها.</p>
+    </div>
+    <div class="principle-card reveal" style="border-top-color:var(--green);">
+      <div class="pc-header" style="background:rgba(26, 122, 74, 0.08); color:var(--green);">
+        <div class="pc-icon">🔁</div>
+        <h3>الثبات (Fiabilité)</h3>
+      </div>
+      <p>الاتساق والثبات في النتائج عند تطبيق التقييم عدة مرات. إذا طبقنا نفس التقييم على نفس المتعلم بنفس الظروف يجب أن نحصل على نتائج متشابهة.</p>
+    </div>
+    <div class="principle-card reveal" style="border-top-color:var(--green);">
+      <div class="pc-header" style="background:rgba(26, 122, 74, 0.08); color:var(--green);">
+        <div class="pc-icon">⚖️</div>
+        <h3>الموضوعية (Objectivité)</h3>
+      </div>
+      <p>عدم تأثر التقييم برأي الأستاذ الشخصي والتحيزات. يجب أن يكون التقييم عادلاً وموضوعياً بعيداً عن الانطباعات والأحكام المسبقة.</p>
+    </div>
+    <div class="principle-card reveal" style="border-top-color:var(--green);">
+      <div class="pc-header" style="background:rgba(26, 122, 74, 0.08); color:var(--green);">
+        <div class="pc-icon">⚙️</div>
+        <h3>القابلية للتطبيق</h3>
+      </div>
+      <p>سهولة وعملية تطبيق التقييم في الواقع الميداني. لا يجب أن يكون معقداً أو يستغرق وقتاً طويلاً جداً يؤثر على سير الحصة.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP STYLES SECTION -->
+<div class="situation-section" style="background: linear-gradient(135deg, rgba(26, 122, 74, 0.03) 0%, rgba(10, 110, 110, 0.03) 100%);">
+  <div class="situation-inner">
+    <div class="reveal">
+      <div class="section-label">أنماط القيادة التربوية</div>
+      <h2 class="section-title">أنماط القيادة <span>التعليمية</span></h2>
+      <p class="section-desc">يؤثر نمط قيادة الأستاذ بشكل مباشر على المناخ التربوي والمحيط النفسي والمردود التعليمي للمتعلمين.</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:28px; margin-top:50px;">
+      <div class="reveal" style="background:var(--card-bg); border-radius:var(--radius); padding:36px; box-shadow:var(--shadow); border-right:5px solid #e74c3c; position:relative; overflow:hidden;">
+        <div style="position:absolute; top:-20px; right:-20px; font-size:80px; opacity:0.05;">🔴</div>
+        <h3 style="color:#e74c3c; margin-bottom:16px; font-size:1.3rem; position:relative; z-index:1;">النمط الاستبدادي</h3>
+        <p style="margin-bottom:20px; color:#555; line-height:1.8; position:relative; z-index:1;">الأستاذ يتحكم بكل القرارات والنشاطات. التلاميذ ينفذون الأوامر والتعليمات فقط دون نقاش أو تشاور.</p>
+        <ul style="list-style:none; gap:12px; display:flex; flex-direction:column; position:relative; z-index:1;">
+          <li style="color:#e74c3c; font-weight:500;">❌ يقلل من الحرية الفردية والتعبير</li>
+          <li style="color:#e74c3c; font-weight:500;">❌ يثير التوتر والخوف والقلق</li>
+          <li style="color:#e74c3c; font-weight:500;">❌ لا ينمي القدرات الإبداعية والناقدة</li>
+          <li style="color:#e74c3c; font-weight:500;">❌ المتعلم سلبي تماماً ومستقبل فقط</li>
+        </ul>
+      </div>
+      <div class="reveal" style="background:linear-gradient(135deg, rgba(243, 156, 18, 0.08) 0%, rgba(230, 126, 34, 0.08) 100%); border-radius:var(--radius); padding:36px; box-shadow:var(--shadow); border-right:5px solid #f39c12; position:relative; overflow:hidden;">
+        <div style="position:absolute; top:-20px; right:-20px; font-size:80px; opacity:0.05;">🟢</div>
+        <h3 style="color:#f39c12; margin-bottom:16px; font-size:1.3rem; position:relative; z-index:1;">النمط الديمقراطي</h3>
+        <p style="margin-bottom:20px; color:#555; line-height:1.8; position:relative; z-index:1;">الأستاذ يشرك التلاميذ في صناعة القرارات. حوار تعاوني ودودي بين الأستاذ والمتعلمين بناءً على الاحترام المتبادل.</p>
+        <ul style="list-style:none; gap:12px; display:flex; flex-direction:column; position:relative; z-index:1;">
+          <li style="color:#27ae60; font-weight:500;">✅ يشجع المشاركة الفعلية والنشطة</li>
+          <li style="color:#27ae60; font-weight:500;">✅ يبني الثقة والاحترام المتبادل</li>
+          <li style="color:#27ae60; font-weight:500;">✅ ينمي الإبداع والابتكار والفكر الناقد</li>
+          <li style="color:#27ae60; font-weight:500;">✅ أفضل نمط للمقاربة بالكفاءات</li>
+        </ul>
+      </div>
+      <div class="reveal" style="background:linear-gradient(135deg, rgba(149, 165, 166, 0.08) 0%, rgba(189, 195, 199, 0.08) 100%); border-radius:var(--radius); padding:36px; box-shadow:var(--shadow); border-right:5px solid #95a5a6; position:relative; overflow:hidden;">
+        <div style="position:absolute; top:-20px; right:-20px; font-size:80px; opacity:0.05;">⚪</div>
+        <h3 style="color:#7f8c8d; margin-bottom:16px; font-size:1.3rem; position:relative; z-index:1;">النمط الحرّ/اللاموجّه</h3>
+        <p style="margin-bottom:20px; color:#555; line-height:1.8; position:relative; z-index:1;">الأستاذ لا يتدخل ولا يوجه. المتعلمون أحراراً تماماً بدون توجيه أو إشراف حقيقي من الأستاذ.</p>
+        <ul style="list-style:none; gap:12px; display:flex; flex-direction:column; position:relative; z-index:1;">
+          <li style="color:#c0392b; font-weight:500;">⚠️ قد يؤدي إلى فوضى واضطراب في الصف</li>
+          <li style="color:#c0392b; font-weight:500;">⚠️ نقص الهيكلية والتنظيم والضبط</li>
+          <li style="color:#c0392b; font-weight:500;">⚠️ قد لا يتحقق التعلم المطلوب فعلاً</li>
+          <li style="color:#c0392b; font-weight:500;">⚠️ غير مناسب للمقاربة بالكفاءات</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TEACHER QUALITIES SECTION -->
+<section class="section">
+  <div class="reveal">
+    <div class="section-label">خصائص الأستاذ الفعّال</div>
+    <h2 class="section-title">صفات وكفاءات المعلم <span>الناجح</span></h2>
+    <p class="section-desc">المعلم الكفء في ظل المقاربة بالكفاءات يجب أن يتمتع بمجموعة من الخصائص والكفاءات الأساسية.</p>
+  </div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(270px, 1fr)); gap:20px; margin-top:50px;">
+    <div class="reveal" style="background:linear-gradient(135deg, rgba(122, 235, 168, 0.1) 0%, rgba(26, 122, 74, 0.1) 100%); border-radius:var(--radius); padding:28px; border-left:4px solid var(--green); box-shadow: 0 4px 15px rgba(26, 122, 74, 0.1);">
+      <h4 style="color:var(--green); margin-bottom:12px; font-size:1.1rem; font-weight:700;">🧠 المعرفة العميقة</h4>
+      <p style="color:#666; font-size:0.95rem; line-height:1.7;">يمتلك معرفة عميقة وشاملة بمادته ويقدّر أهميتها وتأثيراتها على حياة المتعلمين وتطورهم.</p>
+    </div>
+    <div class="reveal" style="background:linear-gradient(135deg, rgba(26, 122, 74, 0.1) 0%, rgba(10, 110, 110, 0.1) 100%); border-radius:var(--radius); padding:28px; border-left:4px solid var(--teal); box-shadow: 0 4px 15px rgba(10, 110, 110, 0.1);">
+      <h4 style="color:var(--teal); margin-bottom:12px; font-size:1.1rem; font-weight:700;">🎯 الكفاءات البيداغوجية</h4>
+      <p style="color:#666; font-size:0.95rem; line-height:1.7;">يمتلك مهارات تدريس متنوعة وقادر على تكييف أساليبه مع حاجات المتعلمين المختلفة والسياقات المتغيرة.</p>
+    </div>
+    <div class="reveal" style="background:linear-gradient(135deg, rgba(106, 59, 143, 0.1) 0%, rgba(192, 57, 43, 0.1) 100%); border-radius:var(--radius); padding:28px; border-left:4px solid var(--purple); box-shadow: 0 4px 15px rgba(106, 59, 143, 0.1);">
+      <h4 style="color:var(--purple); margin-bottom:12px; font-size:1.1rem; font-weight:700;">❤️ الذكاء العاطفي</h4>
+      <p style="color:#666; font-size:0.95rem; line-height:1.7;">يتمتع بذكاء عاطفي عالٍ ويستطيع إدارة العلاقات الإنسانية والمناخ الصفي بفعالية وحساسية.</p>
+    </div>
+    <div class="reveal" style="background:linear-gradient(135deg, rgba(236, 112, 65, 0.1) 0%, rgba(243, 156, 18, 0.1) 100%); border-radius:var(--radius); padding:28px; border-left:4px solid #e67e22; box-shadow: 0 4px 15px rgba(230, 126, 34, 0.1);">
+      <h4 style="color:#e67e22; margin-bottom:12px; font-size:1.1rem; font-weight:700;">🚀 الانفتاح والتطور</h4>
+      <p style="color:#666; font-size:0.95rem; line-height:1.7;">يسعى دائماً للتعلم المستمر والتطور المهني ويتقبل التغيير والابتكار والأفكار الجديدة.</p>
+    </div>
+    <div class="reveal" style="background:linear-gradient(135deg, rgba(26, 159, 168, 0.1) 0%, rgba(22, 160, 133, 0.1) 100%); border-radius:var(--radius); padding:28px; border-left:4px solid var(--teal-light); box-shadow: 0 4px 15px rgba(22, 160, 133, 0.1);">
+      <h4 style="color:var(--teal-light); margin-bottom:12px; font-size:1.1rem; font-weight:700;">👂 الإنصات الفعّال</h4>
+      <p style="color:#666; font-size:0.95rem; line-height:1.7;">يستمع بحقيقة للمتعلمين ويفهم احتياجاتهم ومخاوفهم وآمالهم وينظر إليهم برؤية شاملة.</p>
+    </div>
+    <div class="reveal" style="background:linear-gradient(135deg, rgba(52, 152, 219, 0.1) 0%, rgba(41, 128, 185, 0.1) 100%); border-radius:var(--radius); padding:28px; border-left:4px solid var(--sky); box-shadow: 0 4px 15px rgba(41, 128, 185, 0.1);">
+      <h4 style="color:var(--sky); margin-bottom:12px; font-size:1.1rem; font-weight:700;">✨ الإبداع والابتكار</h4>
+      <p style="color:#666; font-size:0.95rem; line-height:1.7;">يطور استراتيجيات وأنشطة تعليمية مبتكرة وجذابة تحفز التلاميذ على التفكير والتحليل الناقد.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CHAPTER 3 SUMMARY -->
+<div class="summary-section" style="background: linear-gradient(135deg, rgba(26, 122, 74, 0.08) 0%, rgba(10, 110, 110, 0.08) 100%);">
+  <div class="summary-inner">
+    <div class="reveal">
+      <h2>خلاصة الفصل الثالث: <span>التقييم والقيادة</span></h2>
+      <p style="margin-top:16px; font-size:1.05rem; line-height:1.85; color:#555;">التقييم والقيادة التربوية عنصران حاسمان وأساسيان في نجاح تطبيق المقاربة بالكفاءات. يجب أن يكون التقييم شاملاً ومتعدد الأدوات وموضوعياً يقيس درجة تحقق الكفاءات الحقيقية، لا مجرد الحفظ. والقيادة الديمقراطية هي الأنسب لخلق مناخ تعليمي إيجابي وداعم يشرك المتعلم كمحور أساسي للعملية التعليمية برمتها.</p>
+    </div>
+    <div class="summary-grid reveal" style="margin-top:50px;">
+      <div class="sum-item">
+        <div class="si-icon" style="background:rgba(26, 122, 74, 0.15); color:var(--green); font-size:1.8rem;">📋</div>
+        <h4>التقييم متعدد الأدوات</h4>
+        <p>استخدام مجموعة متنوعة من أدوات التقييم (ملاحظة، سلالم، اختبارات، مشاريع، حقائب) يعطي صورة شاملة وعادلة عن مستوى التلميذ وتطوره.</p>
+      </div>
+      <div class="sum-item">
+        <div class="si-icon" style="background:rgba(106, 59, 143, 0.15); color:var(--purple); font-size:1.8rem;">👥</div>
+        <h4>القيادة الديمقراطية</h4>
+        <p>تشريك المتعلم في القرارات والحوار والنقاش يبني الثقة والمسؤولية والالتزام بالتعلم ويشجع على الابتكار والإبداع.</p>
+      </div>
+      <div class="sum-item">
+        <div class="si-icon" style="background:rgba(26, 159, 168, 0.15); color:var(--teal-light); font-size:1.8rem;">🌟</div>
+        <h4>الأستاذ الكفء والملهم</h4>
+        <p>معلم يمتلك معرفة عميقة وكفاءات عالية وذكاء عاطفي قوي يُلهم المتعلمين وينميهم شاملاً ويطورهم إنسانياً وفكرياً.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Intersection Observer for reveal
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), i * 60);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+
+// Sticky nav
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('shown', window.scrollY > 500);
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector(link.getAttribute('href'))?.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
+
+</body>
+</html>
